@@ -1,35 +1,120 @@
 # -*- coding: utf-8 -*-
 from lettuce import *
 import app.match as m
+"""
+class Match:
+    score = []
+    opcionset = {"1st":0, "2nd":1, "3rd":2, "4th":3, "5th":4}
+
+    def __init__(self, player1,
+    			 player2, pacted_sets):
+        self.p1 = player1
+        self.p2 = player2
+        self.pacted_sets = pacted_sets
+        self.textoganador = ""
+        self.wonp1 = 0
+        self.wonp2 = 0
+        del self.score[:]
+        self.score.append("0-0")
+        self.ganadorinicial = "none"
+
+    def score_set(self):
+        self.ganador()       
+        return "{0} | {1}".format(self.textoganador, self.listascoreset())
+    
+    def iniciarganador(self, playerwon):    	
+    	if self.ganadorinicial == "none":
+    		self.ganadorinicial = playerwon
+
+    def listascoreset(self):
+    	listascore = ""
+    	inicio = 0 
+        for index in self.score:
+        	if inicio == 0:
+        		listascore =  index
+        		inicio +=1
+        	else:
+        		listascore = listascore + ", " + index
+        return listascore
+
+    def ordenarscoreganador(self, 
+    						playerwon,
+    						scorej1, 
+    						scorej2):
+    	self.iniciarganador(playerwon)
+    	if self.ganadorinicial == playerwon:
+    		return scorej1 + "-" + scorej2
+    	else:
+    		return scorej2 + "-" + scorej1
+
+    def save_set_won(self, player):
+        if(player == self.p1):
+            self.wonp1 += 1
+        else:
+            self.wonp2 += 1
+
+    def save_score_set(self, scorej1, 
+    					scorej2, numberset, 
+    					playerwon):
+        if(numberset == "1st"):
+            self.score[0]  = self.ordenarscoreganador(playerwon, scorej1, scorej2)
+        else:
+        	print(self.opcionset.get(numberset))
+        	self.score.insert(self.opcionset.get(numberset), self.ordenarscoreganador(playerwon, scorej1, scorej2))
+
+
+    def ganador(self):
+    	numeroaum = 1
+    	if int(self.pacted_sets) == 5:
+    		numeroaum = 2
+
+        if((self.wonp1 + numeroaum) == int(self.pacted_sets)):
+            self.textoganador = self.p1 + " defeated " + self.p2
+        elif ((self.wonp2 + numeroaum) == int(self.pacted_sets)):
+            self.textoganador = self.p2 + " defeated " + self.p1
+        else:
+            self.textoganador = self.p1 + " plays with " + self.p2
+
+
+
+"""
 
 
 @step(u'Given: "([^"]*)" and "([^"]*)" start a match to "([^"]*)" sets')
-def given_group1_and_group2_start_a_match_to_group3_sets(step, group1, group2, group3):
-    world.match = m.Match(group1,group2,group3)
-
-
-@step(u'When: "([^"]*)" and "([^"]*)" start a match to "([^"]*)" sets')
-def when_group1_and_group2_start_a_match_to_group3_sets(step, group1, group2, group3):
-    assert False, 'This step must be implemented'
+def given_group1_and_group2_start_a_match_to_group3_sets(step, jugador1,
+														 jugador2, sets):
+    world.match = m.Match(jugador1, jugador2, sets)
 
 
 @step(u'Then: I see score: "([^"]*)"')
-def then_i_see_score_group1(step, group1):
-    assert False, 'This step must be implemented'
+def then_i_see_score_group1(step, score):
+    assert world.match.score_set() == score, \
+        "Got %s" % world.match.score_set()
 
 
 @step(u'When: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
-def when_group1_won_the_group2_set_group3_group4(step, group1, group2, group3, group4):
-    assert False, 'This step must be implemented'
+def when_group1_won_the_group2_set_group3_group4(step, jugador1, 
+													numeroset, puntojugador1, 
+													puntojugador2):
+    world.match.save_set_won(jugador1)
+    world.match.save_score_set(puntojugador1,
+                               puntojugador2,
+                               numeroset,
+                               jugador1)
 
 
 @step(u'And: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
-def and_group1_won_the_group2_set_group3_group4(step, group1, group2, group3, group4):
-    assert False, 'This step must be implemented'
+def and_group1_won_the_group2_set_group3_group4(step, jugador1, 
+													numeroset, puntojugador1, 
+													puntojugador2):
+    world.match.save_set_won(jugador1)
+    world.match.save_score_set(puntojugador1,
+                               puntojugador2,
+                               numeroset,
+                               jugador1)
 
 
 @step(u'Then: The match score is: "([^"]*)"')
-def then_the_match_score_is_group1(step, group1):
-    assert False, 'This step must be implemented'
-
-
+def then_the_match_score_is_group1(step, score):
+    assert world.match.score_set() == score, \
+        "Got %s" % world.match.score_set()
