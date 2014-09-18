@@ -17,24 +17,18 @@ def then_i_see_score_group1(step, score):
 
 @step(u'When: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
 def when_group1_won_the_group2_set_group3_group4(step, jugador1,
-                                                 numeroset, puntojugador1,
-                                                 puntojugador2):
+                                                 numeroset, puntojugador1, puntojugador2):
     world.match.save_set_won(jugador1)
-    world.match.save_score_set(puntojugador1,
-                               puntojugador2,
-                               numeroset,
-                               jugador1)
+    world.match.save_score_set(
+        puntojugador1, puntojugador2, numeroset, jugador1)
 
 
 @step(u'And: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
-def and_group1_won_the_group2_set_group3_group4(step, jugador1,
-                                                numeroset, puntojugador1,
-                                                puntojugador2):
+def and_group1_won_the_group2_set_group3_group4(step, jugador1, numeroset,
+                                                puntojugador1, puntojugador2):
     world.match.save_set_won(jugador1)
-    world.match.save_score_set(puntojugador1,
-                               puntojugador2,
-                               numeroset,
-                               jugador1)
+    world.match.save_score_set(
+        puntojugador1, puntojugador2, numeroset, jugador1)
 
 
 @step(u'Then: The match score is: "([^"]*)"')
