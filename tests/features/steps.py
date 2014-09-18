@@ -82,7 +82,7 @@ class Match:
 
 @step(u'Given: "([^"]*)" and "([^"]*)" start a match to "([^"]*)" sets')
 def given_group1_and_group2_start_a_match_to_group3_sets(step, jugador1,
-														 jugador2, sets):
+                                                         jugador2, sets):
     world.match = m.Match(jugador1, jugador2, sets)
 
 
@@ -93,9 +93,9 @@ def then_i_see_score_group1(step, score):
 
 
 @step(u'When: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
-def when_group1_won_the_group2_set_group3_group4(step, jugador1, 
-													numeroset, puntojugador1, 
-													puntojugador2):
+def when_group1_won_the_group2_set_group3_group4(step, jugador1,
+                                                 numeroset, puntojugador1,
+                                                 puntojugador2):
     world.match.save_set_won(jugador1)
     world.match.save_score_set(puntojugador1,
                                puntojugador2,
@@ -104,9 +104,9 @@ def when_group1_won_the_group2_set_group3_group4(step, jugador1,
 
 
 @step(u'And: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
-def and_group1_won_the_group2_set_group3_group4(step, jugador1, 
-													numeroset, puntojugador1, 
-													puntojugador2):
+def and_group1_won_the_group2_set_group3_group4(step, jugador1,
+                                                numeroset, puntojugador1,
+                                                puntojugador2):
     world.match.save_set_won(jugador1)
     world.match.save_score_set(puntojugador1,
                                puntojugador2,
