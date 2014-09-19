@@ -5,7 +5,11 @@ python:
 install: "pip install -r requirements.txt"
 before_script: 
   - "flake8 --ignore=F403, E501 app tests "
+  - coverage erase
 # command to run tests
 script: 
+  - coverage run --source=sqa2014tennis steps.py test
   - lettuce tests/
   - nosetests --with-doctest --with-coverage -s app
+after_script:
+  - coverage report
