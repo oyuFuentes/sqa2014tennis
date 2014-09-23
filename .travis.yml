@@ -10,7 +10,8 @@ before_script:
 script: 
   - lettuce tests/
   - coverage run tests/features/steps.py 
+  - coverage report -m
   - nosetests --with-doctest --with-coverage -s app
   
-after_script:
-  - coverage report -m
+
+  
