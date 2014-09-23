@@ -9,7 +9,8 @@ before_script:
 # command to run tests
 script: 
   - lettuce tests/
-  - nosetests --with-doctest --with-coverage -s app
   - coverage run tests/features/steps.py 
+  - nosetests --with-doctest --with-coverage -s app
+  
 after_script:
-  - coverage report
+  - coverage report -m
