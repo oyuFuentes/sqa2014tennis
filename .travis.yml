@@ -9,7 +9,7 @@ before_script:
 # command to run tests
 script: 
   - lettuce tests/
-  - coverage run tests/features/steps.py 
+  - coverage run --omit='*lettuce*,*fuzzywuzzy*' tests/features/steps.py 
   - coverage report -m
   - nosetests --with-doctest --with-coverage -s app
   
