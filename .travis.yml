@@ -8,8 +8,8 @@ before_script:
   - coverage erase
 # command to run tests
 script: 
-  - coverage run --source=sqa2014tennis/tests/features steps.py test
   - lettuce tests/
   - nosetests --with-doctest --with-coverage -s app
+  - coverage run tests/features/steps.py 
 after_script:
   - coverage report
