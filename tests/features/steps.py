@@ -12,7 +12,7 @@ def given_group1_and_group2_start_a_match_to_group3_sets(step, jugador1,
 @step(u'Then: I see score: "([^"]*)"')
 def then_i_see_score_group1(step, score):
     assert world.match.score_set() == score, \
-        "Got %s" % world.match.score_set()
+        "Get %s" % world.match.score_set()
 
 
 @step(u'When: "([^"]*)" won the "([^"]*)" set "([^"]*)"-"([^"]*)"')
@@ -34,4 +34,4 @@ def and_group1_won_the_group2_set_group3_group4(step, jugador1, numeroset,
 @step(u'Then: The match score is: "([^"]*)"')
 def then_the_match_score_is_group1(step, score):
     assert world.match.score_set() == score, \
-        "Got %s" % world.match.score_set()
+        "Get %s" % world.match.score_set()
